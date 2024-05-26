@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text Counter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: rgb(58, 53, 46);
+            color: antiquewhite;
+        }
+        h1{
+            text-align: center;
+            font-size: 7vh;
+        }
+        textarea {
+            width: 300px;
+            height: 150px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        #results {
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Word Count Application</h1>
+    <textarea id="text-input" placeholder="Type your text here..."></textarea>
+    <div id="results">
+        <p>Words: <span id="word-count">0</span></p>
+        <p>Characters: <span id="char-count">0</span></p>
+        <p>Numbers: <span id="number-count">0</span></p>
+        <p>Special Characters: <span id="special-char-count">0</span></p>
+    </div>
+    <script>
+        document.getElementById('text-input').addEventListener('input', function() {
+            var text = this.value;
+            var words = text.match(/\b[-?(\w+)?]+\b/gi);
+            var numbers = text.match(/\d+/g);
+            var specialChars = text.match(/[!@#$%^&*(),.?":{}|<>]/g);
+            document.getElementById('word-count').textContent = words ? words.length : 0;
+            document.getElementById('char-count').textContent = text.length;
+            document.getElementById('number-count').textContent = numbers ? numbers.length : 0;
+            document.getElementById('special-char-count').textContent = specialChars ? specialChars.length : 0;
+        });
+    </script>
+</body>
+</html>
